@@ -1,0 +1,27 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  deployer:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    tty: true
+    links:
+      - web
+    volumes:
+      - ..:/app
+  web:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    tty: true
+    ports:
+      - "8000:80"
+  dev:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    tty: true
+    ports:
+      - "8888:80"
+    volumes:
+      - ..:/app
