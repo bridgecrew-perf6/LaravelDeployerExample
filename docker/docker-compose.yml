@@ -9,7 +9,7 @@ services:
       - web
     volumes:
       - ..:/app
-#    command: bash -c "service nginx start"
+      - ./resources/dev_site_enabled:/etc/nginx/sites-enabled
   web:
     build:
       context: ../
@@ -17,7 +17,8 @@ services:
     tty: true
     ports:
       - "8000:80"
-#    command: bash -c "service nginx start"
+    volumes:
+        - ./resources/prod_site_enabled:/etc/nginx/sites-enabled
   dev:
     build:
       context: ../
@@ -27,4 +28,4 @@ services:
       - "8888:80"
     volumes:
       - ..:/app
-#    command: bash -c "php-fpm"
+      - ./resources/dev_site_enabled:/etc/nginx/sites-enabled

@@ -1,10 +1,10 @@
 FROM php:7-fpm-buster
-RUN mkdir /app
+RUN mkdir -p /app
 RUN apt-get update
 RUN apt-get install nginx git openssh-server sudo -y
 
 # nginx site-enabled/defautの設定
-COPY docker/resources/nginx_site_enabled_default /etc/nginx/sites-enabled/default
+#COPY docker/resources/nginx_site_enabled_default /etc/nginx/sites-enabled/default
 
 # composerインストール
 WORKDIR /tmp
