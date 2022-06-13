@@ -10,3 +10,6 @@
 # 使い方
 docker/docker_helper.sh up
 docker/docker_helper.sh attach_deployer
+
+# メモ
+* デプロイ対象のマシンにデプロイするマシンからssh接続できる必要があります
