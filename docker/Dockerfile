@@ -19,15 +19,19 @@ RUN mkdir /var/run/sshd
 ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
 EXPOSE 22
-ENTRYPOINT [ "/usr/sbin/sshd", "-D" ]
 
 # ssh auth
 RUN mkdir /root/.ssh
-COPY docker/resources/test_key /root/.ssh
-COPY docker/resources/test_key.pub /root/.ssh
-RUN chmod 600 /root/.ssh/test_key
-RUN chmod 644 /root/.ssh/test_key.pub
-RUN cat /root/.ssh/test_key.pub >> /root/.ssh/authorized_keys
+COPY docker/resources/test_key /root/.ssh/id_rsa
+COPY docker/resources/test_key.pub /root/.ssh/id_rsa.pub
+RUN chmod 600 /root/.ssh/id_rsa
+RUN chmod 644 /root/.ssh/id_rsa.pub
+RUN cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
 RUN chmod 644 /root/.ssh/authorized_keys
 
 WORKDIR /app
+EXPOSE 80
+
+COPY docker/resources/command.sh /usr/sbin
+RUN chmod +x /usr/sbin/command.sh
+CMD ["/usr/sbin/command.sh"]
