@@ -7,7 +7,9 @@ server {
      error_log /var/log/nginx/vhostlaravel-error.log;
 
      # Webroot Directory for Laravel project
-     root /app/release/public;
+     root /app/current/public;
+     #root /app/public;
+     #root /tmp/public;
      index index.php index.html index.htm;
 
      # Your Domain Name

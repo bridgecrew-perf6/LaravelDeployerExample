@@ -1,7 +1,7 @@
 FROM php:7-fpm-buster
 RUN mkdir -p /app
 RUN apt-get update
-RUN apt-get install nginx git openssh-server sudo -y
+RUN apt-get install nginx git openssh-server sudo acl unzip -y
 
 # nginx site-enabled/defautの設定
 #COPY docker/resources/nginx_site_enabled_default /etc/nginx/sites-enabled/default

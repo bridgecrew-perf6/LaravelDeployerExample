@@ -18,6 +18,7 @@ services:
     ports:
       - "8000:80"
     volumes:
+        - ..:/tmp
         - ./resources/prod_site_enabled:/etc/nginx/sites-enabled
   dev:
     build:

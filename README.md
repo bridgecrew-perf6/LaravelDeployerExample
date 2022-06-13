@@ -25,3 +25,11 @@ http://localhost:8000
 
 # メモ
 * デプロイ対象のマシンにデプロイするマシンからssh接続できる必要があります
+
+デプロイ後に↓が必要だった。たぶん何かをすれば不要になるけど。
+php artisan route:clear
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
+npm run dev
+php artisan key:generate
