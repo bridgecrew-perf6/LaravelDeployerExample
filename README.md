@@ -24,6 +24,8 @@ deployerのコンテナ内
 cd /app
 composer install
 vendor/bin/dep deploy # githubからデプロイ
+scp .env web:/app/shared/.env # .envをコピー
+vendor/bin/dep deploy # 検証用.envコピーの関係で再度デプロイする必要がある
 ```
 
 ホストで以下のページにアクセスし、「デプロイされました」という日本語があればGithub無事にリポジトリからデプロイされています。

@@ -15,11 +15,17 @@ case $1 in
   "build" )
     docker-compose -p $PROJECT_NAME -f $SCRIPT_DIR/docker-compose.yml build
   ;;
+  "build_no_cache" )
+    docker-compose -p $PROJECT_NAME -f $SCRIPT_DIR/docker-compose.yml build --no-cache
+  ;;
   "attach_deployer" )
     docker exec -it `docker ps -q -f name=${PROJECT_NAME}_deployer` bash
   ;;
   "attach_web" )
     docker exec -it `docker ps -q -f name=${PROJECT_NAME}_web` bash
+  ;;
+  "copy_dotenv" )
+    docker cp ${SCRIPT_DIR}/../.env `docker ps -q -f name=${PROJECT_NAME}_web`:/app/shared
   ;;
   "attach_dev" )
     docker exec -it `docker ps -q -f name=${PROJECT_NAME}_dev` bash
